@@ -1,0 +1,29 @@
+<div class="comment" *ngIf='!isDeleted'>
+  <div *ngIf="!isEditing; else editor">
+    <div class="options">
+      <button *ngIf="comment.__author__.username === username && !isEditing" mat-icon-button (click)="toggleEdit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="comment.__author__.username === username && !isEditing" mat-icon-button (click)="delete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="content-conteiner">
+      <h4>{{ comment.__author__.username }}</h4>
+      <p>{{ comment.content }}</p>
+    </div>
+  </div>
+  <ng-template #editor>
+    <div class="options">
+      <button mat-icon-button (click)="toggleEdit()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+    <div class="content-container editing">
+      <mat-form-field class="full-width" layout="row">
+        <input matInput #content placeholder="Comment content" type="text" [value]="comment.content" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="editSave(content.value)">Save</button>
+    </div>
+  </ng-template>
+</div>

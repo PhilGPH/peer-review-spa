@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 mat-dialog-title>Add members</h1>
+  <div mat-dialog-content>
+    <div class="user-container" fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="search-pag">
+        <div fxFlex="100" class="search">
+          <mat-form-field class="search-input">
+            <input matInput placeholder="Search user" (keyup)="filterChange($event.target.value)" #searchInput />
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-list class="scroll">
+        <mat-list-item *ngFor="let user of filteredUsers">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="members-container">
+            <span class="name-container">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" class="member-icon">person</mat-icon>
+              {{ user.username }}
+            </span>
+            <button mat-raised-button color="primary" (click)="addMember(user.username)">
+              Invite
+            </button>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+        <div *ngIf="!filteredUsers.length">
+          No users currently available!
+        </div>
+      </mat-list>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+h2 {
+    color: #fff;
+    font-weight: bold;
+}
+
+.text {
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #5cdb95;
+    font-size: 27px;
+    font-family: cursive;
+}
+
+.label {
+  margin-left: 5px;
+}
+
+.mat-button {
+    color: #139443;
+    font-size: x-large;
+    box-shadow: inset 0 0 0 1px #139443;
+}
+
+img {
+    margin-top: 3px;
+    width: 70%;
+    height: auto;
+}
+
+.home-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: blue;
+    z-index: 0;
+    overflow: hidden;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+    }
+
+    .top-menu {
+        background-color: rgba(225, 225, 225, 0.6);
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        padding: 10px 0;
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        .brand {
+            max-width: 220px;
+        }
+    }
+    .menu-container {
+        margin-bottom: 0;
+    }
+
+    #homeVideo {
+        position: absolute;
+        left: 0;
+        width:100%;
+        z-index: -1;
+    }
+
+    .slogan {
+        z-index: 2;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -45%);
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px
+    }
+
+    h2 {
+        margin-bottom: 20px
+    }
+}
+
+.btn {
+    font-weight: bold;
+    padding: 5px 15px;
+    transition: 0.3s ease-in-out all;
+}
+
+.sign-up-btn {
+    margin: 15px;
+    background: #30c467;
+    color: #fff;
+
+    &:hover {
+        background: #fff;
+        color: #30c467;
+    }
+}
+
+.log-in-btn {
+    color: #fff;
+    border: 2px solid #fff;
+    
+    &:hover {
+        color: #30c467;
+        border:2px solid #30c467;
+    }
+}

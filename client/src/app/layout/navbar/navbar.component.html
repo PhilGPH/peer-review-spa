@@ -1,0 +1,24 @@
+<mat-toolbar *ngIf="loggedIn" color="primary" class="top-menu" [class.mat-elevation-z1]="true" fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="container">
+    <img src="../../../assets/tick42-logo.png" style="max-width: 150px">  
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="8px" class="menu-container">
+        <ng-template [ngIf]="loggedIn">
+          <a mat-button routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            <span class="label">dashboard</span>
+          </a>
+          <a mat-button routerLink="/team">
+            <mat-icon>people</mat-icon>
+            <span class="label">teams</span>
+          </a>
+          <a mat-button routerLink="/home" (click)="triggerLogout()">
+            <mat-icon>input</mat-icon>
+            <span class="label">Logout</span>
+          </a>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+ 
+</mat-toolbar>

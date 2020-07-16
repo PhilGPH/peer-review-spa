@@ -1,0 +1,75 @@
+<div class="container content">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Teams</h1>
+    </div>
+    <mat-tab-group dynamicHeight class="col-md-12">
+      <mat-tab label="Teams">
+        <div class="row">
+          <div class="col-md-12">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="createTeam()"
+              class="createTeamBtn"
+            >
+              Create new Team
+            </button>
+          </div>
+          <div class="col-md-6 col-lg-4" *ngFor="let team of teams">
+            <mat-card class="auth-card">
+              <mat-card-title>{{ team.name }}</mat-card-title>
+              <mat-card-actions layout="row">
+                <button mat-stroked-button color="primary" (click)="showTeam(team.id)">Show Details</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <div class="col-md-12" *ngIf="!teams.length">
+            <h3 class="custom-margin-top">You are not part of a team yet!</h3>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Invitations">
+        <div class="row" *ngFor="let invitation of invitations">
+          <div class="col-md-6 col-lg-4" *ngIf="invitation.status==='pending'" >
+            <mat-card class="auth-card">
+              <mat-card-title>Team: {{ invitation.__team__.name }}</mat-card-title>
+              <mat-card-subtitle>
+                <span class="meta-info">Status: {{ invitation.status }}</span>
+              </mat-card-subtitle>
+              <mat-card-actions layout="row">
+                <button
+                  mat-raised-button
+                  *ngIf="invitation.status === 'accepted'"
+                  color="warn"
+                  (click)="updateInvitation(invitation.id, false)"
+                >
+                  Leave
+                </button>
+                <button
+                  mat-raised-button
+                  *ngIf="invitation.status === 'pending' || invitation.status === 'rejected'"
+                  color="primary"
+                  (click)="updateInvitation(invitation.id, true)"
+                >
+                  Accept
+                </button>
+                <button
+                  mat-raised-button
+                  *ngIf="invitation.status === 'pending'"
+                  color="warn"
+                  (click)="updateInvitation(invitation.id, false)"
+                >
+                  Decline
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <div class="col-md-12" *ngIf="!invitations.length" >
+            <h3 class="custom-margin-top">There are no invitations yet!</h3>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

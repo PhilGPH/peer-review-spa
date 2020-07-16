@@ -1,0 +1,110 @@
+<div class="text-center">
+  <a  routerLink="/home" class="brand-container">
+    <img src="../../../assets/tick42-logo.png" class="brand main-brand" alt="Tick42 logo" />
+  </a>
+  <mat-card class="container" fxLayout="column" fxLayoutAlign="space-between stretch" [ngStyle.xs]="{ width: '90%' }">
+    <mat-card-title-group class="title-group-right">
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-subtitle>
+        Already registered?
+        <a routerLink="/login">Login</a>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <form
+        class="form-container"
+        fxLayout="column"
+        fxLayoutAlign="space-between center"
+        [formGroup]="registerForm"
+        (ngSubmit)="register(registerForm.value)"
+      >
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            placeholder="Enter your username"
+            formControlName="username"
+            (keydown.space)="$event.preventDefault()"
+          />
+          <mat-error
+            *ngIf="registerForm.controls.username.hasError('minlength')
+                || registerForm.controls.username.hasError('required')"
+          >
+            Username must be at least 3 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            placeholder="Enter your email"
+            formControlName="email"
+            (keydown.space)="$event.preventDefault()"
+          />
+          <mat-error
+            *ngIf="registerForm.controls.email.hasError('email')
+                && !registerForm.controls.email.hasError('required')"
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls.email.hasError('required')">Email is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            placeholder="Enter your password"
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            (keydown.space)="$event.preventDefault()"
+          />
+          <mat-error
+            *ngIf="registerForm.controls.password.hasError('pattern')
+                || registerForm.controls.password.hasError('required')"
+          >
+            Password must be at least 6 characters and contain at least one Uppercase (A-Z),
+            Lowercase (a-z), Digit (0-9), Special character (@$!%*?&)
+          </mat-error>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            placeholder="Enter your first name"
+            formControlName="firstName"
+            (keydown.space)="$event.preventDefault()"
+          />
+          <mat-error
+            *ngIf="registerForm.controls.firstName.hasError('minlength')
+                || registerForm.controls.firstName.hasError('required')"
+          >
+            First name must be at least 2 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            placeholder="Enter your last name"
+            formControlName="lastName"
+            (keydown.space)="$event.preventDefault()"
+          />
+          <mat-error
+            *ngIf="registerForm.controls.lastName.hasError('minlength')
+                || registerForm.controls.lastName.hasError('required')"
+          >
+            Last name must be at least 2 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-card-actions class="action-wrapper">
+          <button mat-flat-button color="primary" class="submit-btn" [disabled]="!registerForm.valid">Register</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card> 
+</div>

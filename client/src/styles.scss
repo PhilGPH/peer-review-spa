@@ -1,0 +1,36 @@
+.full-width {
+  width: 100%;
+}
+
+.auth-card {
+  margin: 15px 0;
+}
+
+.meta-info {
+  display: block;
+}
+
+h1 { 
+  margin: 25px 0;
+}
+
+.content {
+  padding-top: 30px;
+}
+
+.custom-margin-top {
+  margin-top: 25px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.title-group {
+  display: block;
+  width: 100%;
+
+  & > div { 
+    width: 100%;
+  }
+}

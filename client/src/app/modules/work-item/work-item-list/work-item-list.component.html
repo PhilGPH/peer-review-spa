@@ -1,0 +1,46 @@
+<div class="action-btn">
+  <ng-container *ngIf="!cancelCreation; else elseTemplate">
+    <button mat-raised-button color="warn" class="btn-add-item" (click)="toggleButton()">
+      <mat-icon aria-hidden="false" aria-label="add">remove</mat-icon> Close
+    </button>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <button mat-raised-button color="primary" class="btn-add-item" (click)="toggleButton()">
+      <mat-icon aria-hidden="false" aria-label="add">add</mat-icon> Add new item
+    </button>
+  </ng-template>
+</div>
+<mat-card class="input-field" fxLayout="row" *ngIf="!cancelCreation">
+
+  <div class="item-form">
+    <mat-form-field>
+      <input [(ngModel)]="workItemTitle" matInput placeholder="Work item title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <textarea [(ngModel)]="workItemDescription" matInput rows="10" placeholder="Description"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="user-container" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="search-pag">
+      <div fxFlex="50" class="search">
+        <mat-form-field class="search-input" *ngIf="!isHidden">
+          <input matInput placeholder="Search user" (keyup)="filterChange($event.target.value)" #searchInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-list class="scroll">
+      <mat-list-item *ngFor="let user of filteredUsers">
+        <mat-slide-toggle (click)="toggleUser(user.id)">{{ this.user.username }}</mat-slide-toggle>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div class="tags" fxLayout="column" fxLayoutAlign="space-between center">
+    <mat-form-field>
+      <mat-select placeholder="Select tag">
+        <mat-option *ngFor="let tag of tags" [value]="tag" (click)="chooseTag(tag)">{{ this.tag }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button id="create-button" color="primary" (click)="createWorkItem()" mat-raised-button>Create work item</button>
+  </div>

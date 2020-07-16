@@ -1,0 +1,68 @@
+<div class="container content">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Dashboard</h1>
+    </div>
+    <mat-tab-group dynamicHeight class="col-md-12">
+      <mat-tab label="Work Items">
+        <div class="row">
+          <app-work-item-list
+            class="col-md-12"
+            [allUsers]="allUsers"
+            [workItems]="workItems">
+          </app-work-item-list>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div *ngIf="!workItems.length" class="custom-margin-top">
+            <h3>You don't have any work items yet!</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4" *ngFor="let workItem of workItems">
+            <mat-card class="auth-card">
+              <mat-card-title>{{workItem.title}}</mat-card-title>
+              <mat-card-subtitle>
+                <span class="meta-info">
+                  Status: {{workItem.status}}
+                </span>
+                <span class="meta-info">
+                  Tag: {{workItem.tag}}
+                </span>
+              </mat-card-subtitle>
+              <mat-card-actions layout="row">
+                <button mat-raised-button color="primary" (click)="showWorkItem(workItem.id)">
+                  Show Details
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Work Items For Review">
+        <div class="row">
+          <div *ngIf="!reviews.length">
+            <h3 class="special-margin-left custom-margin-top">You are not assigned as a reviewer!</h3>
+          </div>
+          <div class="col-md-6 col-lg-4" *ngFor="let workItem of reviews">
+            <mat-card class="auth-card">
+              <mat-card-title>{{workItem.title}}</mat-card-title>
+              <mat-card-subtitle>
+                <span class="meta-info">
+                  Status: {{workItem.status}}
+                </span>
+                <span class="meta-info">
+                  Tag: {{workItem.tag}}
+                </span>
+              </mat-card-subtitle>
+              <mat-card-actions layout="row">
+                <button mat-raised-button color="primary" (click)="showWorkItem(workItem.id)">
+                  Show Details
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

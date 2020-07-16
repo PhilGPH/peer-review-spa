@@ -1,0 +1,52 @@
+<div class="text-center">
+  <a routerLink="/home" class="brand-container">
+    <img src="../../../assets/tick42-logo.png" class="brand main-brand" alt="Tick42 logo" />
+  </a>
+  <mat-card class="container" fxLayout="column" fxLayoutAlign="space-between stretch" [ngStyle.xs]="{ width: '90%' }">
+    <mat-card-title-group class="title-group-left">
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>
+        Don't have an account?
+        <a routerLink="/register">Register</a>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <form
+        class="form-container"
+        fxLayout="column"
+        fxLayoutAlign="space-between center"
+        [formGroup]="loginForm"
+        (ngSubmit)="login(loginForm.value)"
+        required
+      >
+        <mat-form-field class="form-field">
+          <input matInput placeholder="username" formControlName="username" (keydown.space)="$event.preventDefault()" />
+          <mat-error *ngIf="loginForm.controls.username.hasError('required')">Username is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input
+            matInput
+            placeholder="password"
+            formControlName="password"
+            (keydown.space)="$event.preventDefault()"
+            [type]="hide ? 'password' : 'text'"
+          />
+          <mat-error *ngIf="loginForm.controls.password.hasError('required')">Password is required</mat-error>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-card-actions class="action-wrapper">
+          <button mat-flat-button color="primary" class="submit-btn" [disabled]="!loginForm.valid">Login</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

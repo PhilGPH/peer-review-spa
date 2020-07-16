@@ -1,0 +1,40 @@
+.container {
+  --primary-color: #5cdb95;
+  --red-color: #ff5722;
+  --yellow-color: #efd469;
+}
+
+.post-detail {
+  margin-top: 3px;
+}
+
+.material-icons {
+  margin-left: -6px;
+}
+
+.text-green {
+  color: var(--primary-color);
+}
+
+.text-yellow {
+  color: var(--yellow-color);
+}
+
+.text-red {
+  color: var(--red-color);
+}
+
+.reviewers-container {
+  margin-bottom: 30px;
+}
+
+.description {
+  padding: 5px;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+}
+
+.already-voted {
+  margin-bottom: 5px;
+  font-weight: bold;
+}

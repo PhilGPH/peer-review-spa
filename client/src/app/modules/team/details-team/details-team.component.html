@@ -1,0 +1,62 @@
+<div class="container content">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{ team.name }}</h1>
+      <button mat-raised-button color="primary" (click)="addMemberDialog()">Add member</button>
+    </div>
+    <mat-tab-group dynamicHeight class="col-md-12">
+      <mat-tab label="Members">
+        <div class="row">
+          <div class="col-md-6 col-lg-4" *ngFor="let member of members">
+            <mat-card class="auth-card">
+              <mat-card-title class="username">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon>{{ member.username }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                <span class="meta-info">Name: {{ member.firstName }}</span>
+                <span class="meta-info">Last name: {{ member.lastName }}</span>
+                <span class="meta-info">Email: {{ member.email }}</span>
+                <span class="meta-info">Role: {{ member.role }}</span>
+              </mat-card-subtitle>
+            </mat-card>
+          </div>
+          <div class="col-md-12" *ngIf="!members.length">There are no members in this team!</div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Work items">
+        <div class="row">
+          <div class="col-md-6 col-lg-4" *ngFor="let workItem of workItems.workItems">
+              <mat-card class="auth-card">
+                <mat-card-title>{{ workItem.title }}</mat-card-title>
+                <mat-card-subtitle>
+                  <span class="meta-info">Status: {{ workItem.status }}</span>
+                  <span class="meta-info">Tag: {{ workItem.tag }}</span>
+                  <span class="meta-info">Assignee: {{ workItem.__assignee__.username }}</span>
+                </mat-card-subtitle>
+                <mat-card-actions layout="row">
+                  <button mat-raised-button color="primary" (click)="showWorkItem(workItem.id)">Show Details</button>
+                </mat-card-actions>
+              </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Reviews">
+        <div class="row">
+          <div class="col-md-6 col-lg-4" *ngFor="let workItem of reviews.workItems">
+              <mat-card class="auth-card">
+                <mat-card-title>{{ workItem.title }}</mat-card-title>
+                <mat-card-subtitle>
+                  <span class="meta-info">Status: {{ workItem.status }}</span>
+                  <span class="meta-info">Tag: {{ workItem.tag }}</span>
+                  <span class="meta-info">Assignee: {{ workItem.__assignee__.username }}</span>
+                </mat-card-subtitle>
+                <mat-card-actions layout="row">
+                  <button mat-raised-button color="primary" (click)="showWorkItem(workItem.id)">Show Details</button>
+                </mat-card-actions>
+              </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

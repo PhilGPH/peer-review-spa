@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Create a team</h1>
+<div mat-dialog-content>
+  <p>How would you want to name the new team?</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.name" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary"[mat-dialog-close]="data.name" cdkFocusInitial>Save</button>
+</div>

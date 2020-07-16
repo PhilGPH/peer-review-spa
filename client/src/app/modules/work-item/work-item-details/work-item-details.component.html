@@ -1,0 +1,83 @@
+<div class="container content">
+  <mat-card class="post-detail">
+    <mat-card-title fxLayout="row" fxLayoutAlign="space-between center">
+      <span>{{ this.workItem.title }}</span>
+      <div class="button-group">
+        <button
+          *ngIf="author && !isMerged"
+          [disabled]="workItem.status!=='accepted'"
+          class="merge mr-3"
+          color="primary"
+          (click)="mergeItem()"
+          mat-raised-button
+        >
+          <mat-icon class="material-icons">call_merge</mat-icon>
+          Merge
+        </button> 
+        <button class="back-to-dashboard" color="primary" (click)="backToDashboard()" mat-raised-button>
+          <mat-icon class="material-icons">arrow_left</mat-icon>
+          Back to dashboard
+        </button>
+      </div>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <a>Created by: {{ this.workItem.assignee.username }}</a>
+      on {{ this.workItem.created | date: 'dd LLL yyyy, HH:mm' }}
+    </mat-card-subtitle>
+      <div *ngIf="!isMerged">Status: {{ this.workItem.status }}</div>
+      <div class="reviewers-container" reviewers="reviewers">Reviewers:
+        <span *ngFor="let user of reviewers">
+          {{ user.username }}
+          <mat-icon [ngClass]="['material-icons', statusColors[user.status]]">{{ icons[user.status] }}</mat-icon>
+        </span>
+      </div>
+    <mat-card-content class="description">
+      <div>{{ this.workItem.description }}</div>
+    </mat-card-content>
+    <div *ngIf="reviewer && !isMerged" hasReviewed="hasReviewed" userReviewStatus="userReviewStatus">
+      <p class="already-voted" *ngIf="userReviewStatus !== 'pending'">
+        You already {{ userReviewStatus }} this item.
+      </p>
+      <button
+        *ngIf="userReviewStatus !== 'accepted'"
+        mat-raised-button
+        class="mr-2"
+        color="primary"
+        (click)="review(workItem.id, 'accepted')"
+      >
+        Accept
+      </button>
+      <button
+        *ngIf="userReviewStatus !== 'change requested'"
+        mat-stroked-button
+        class="mr-2"
+        color="primary"
+        (click)="review(workItem.id, 'change requested')"
+      >
+        Change Request
+      </button>
+      <button
+        *ngIf="userReviewStatus !== 'rejected'"
+        mat-raised-button
+        color="warn"
+        (click)="review(workItem.id, 'rejected')"
+      >
+        Reject
+      </button>
+    </div>
+    <hr />
+    <div *ngIf="!isMerged">
+      <mat-form-field class="full-width" layout="row">
+        <input matInput placeholder="Comment" type="text" [(ngModel)]="newComment" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addComment(workItem.id)">Add Comment</button>
+      <hr />
+  </div>
+    <div *ngIf="comments.length > 0; else noComments">
+      <div class="comment" *ngFor="let comment of comments">
+        <app-comment [username]="this.username" [idWorkItem]="workItem.id" [comment]="comment"></app-comment>
+      </div>
+    </div>
+    <ng-template #noComments>Currently there are no comments for this post.</ng-template>  
+  </mat-card>
+</div>

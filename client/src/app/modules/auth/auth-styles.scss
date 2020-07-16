@@ -1,0 +1,35 @@
+.form-field {
+  margin-bottom: 10px;
+}
+
+.title-group-right {
+  display: block;
+  padding-right: 2.5%;
+  text-align: right;
+}
+
+.title-group-left {
+  padding-left: 2.5%;
+  text-align: left;
+}
+
+.container {
+  width: 500px;
+  margin-top: 50px;
+}
+
+.form-container { 
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > .form-field,
+.action-wrapper,
+.submit-btn { 
+  width: 95%;
+}
+
+.brand-container {
+  display: inline-block;
+  margin: 40px 0 25px;
+}
